@@ -1,0 +1,390 @@
+.pageHero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-bottom: 1px solid #334155;
+  padding: 3rem 1.5rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--teal), var(--blue));
+}
+
+.heroCircle {
+  position: absolute;
+  top: -100px;
+  right: -50px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(13,110,253,0.06);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.pageContent {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(13,110,253,0.15);
+  border: 1px solid rgba(13,110,253,0.3);
+  border-radius: 999px;
+  padding: 0.2rem 0.8rem;
+  margin-bottom: 1.1rem;
+}
+
+.badgeText {
+  font-size: 0.65rem;
+  color: #7dd3fc;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800;
+  color: #f1f5f9;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+
+.titleEm {
+  color: #7dd3fc;
+}
+
+.desc {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.72;
+  max-width: 620px;
+}
+
+.filterTabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filterTab {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.filterTabCount {
+  font-size: 0.65rem;
+  background: var(--blue-sub);
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+}
+
+.filterTabActiveCount {
+  font-size: 0.65rem;
+  background: rgba(255,255,255,0.2);
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+}
+
+.categorySection {
+  margin-bottom: 3rem;
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid;
+}
+
+.categoryIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.categoryTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+}
+
+.categoryDesc {
+  font-size: 0.76rem;
+  color: var(--text-sub);
+  margin: 0;
+  margin-top: 2px;
+}
+
+.sourceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.sourceCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.sourceCardExpanded {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.cardAccent {
+  height: 3px;
+}
+
+.cardHeader {
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.cardTitleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.sourceName {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.sourceBadge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.1rem 0.45rem;
+  margin-left: 0.5rem;
+  verticalAlign: middle;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.expandIcon {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+
+.expandIconActive {
+  transform: rotate(180deg);
+}
+
+.sourceFullName {
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sourceOrg {
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin: 0.25rem 0 0;
+}
+
+.metaStrip {
+  display: flex;
+  border-top: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+
+.metaItem {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border-right: 1px solid var(--border);
+}
+
+.metaItem:last-child {
+  border-right: none;
+}
+
+.metaLabel {
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+
+.metaValue {
+  font-size: 0.74rem;
+  color: var(--text);
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.expandedDetail {
+  padding: 1.1rem 1.2rem;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.2s ease both;
+}
+
+.sourceDetailText {
+  font-size: 0.82rem;
+  color: var(--text-sub);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.dataPointsSection {
+  margin-bottom: 1rem;
+}
+
+.dataPointsLabel {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  margin-bottom: 0.6rem;
+}
+
+.metricsCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.metricTag {
+  font-size: 0.7rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 4px;
+  font-weight: 500;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.sourceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.38rem 0.85rem;
+}
+
+.integrityBox {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem 2rem;
+  margin-top: 1rem;
+}
+
+.integrityHeader {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.integrityIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(16,163,74,0.12);
+  border: 1px solid rgba(16,163,74,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.integrityContent {
+  flex: 1;
+  min-width: 240px;
+}
+
+.integrityTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+
+.integrityDesc {
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  line-height: 1.65;
+  margin-bottom: 0.85rem;
+}
+
+.integrityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.5rem;
+}
+
+.integrityPoint {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+}
+
+.checkIcon {
+  color: #16a34a;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.integrityText {
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+}

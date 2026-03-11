@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --blue: #0d6efd;
+  --teal: #06b6d4;
+  --page-bg: #f1f5f9;
+  --surface: #ffffff;
+  --surface-alt: #f8fafc;
+  --border: #e2e8f0;
+  --border-hover: #bfdbfe;
+  --text: #0f172a;
+  --text-sub: #475569;
+  --text-muted: #9ca3af;
+  --track-bg: #e2e8f0;
+  --blue-sub: rgba(13,110,253,0.08);
+  --shadow: 0 1px 3px rgba(0,0,0,0.07);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+.dark {
+  --page-bg: #0f172a;
+  --surface: #1e293b;
+  --surface-alt: #162032;
+  --border: #334155;
+  --border-hover: #475569;
+  --text: #f1f5f9;
+  --text-sub: #94a3b8;
+  --text-muted: #475569;
+  --track-bg: #0f172a;
+  --blue-sub: rgba(13,110,253,0.18);
+  --shadow: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.5);
+}
+
+::placeholder {
+  color: #94a3b8;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
