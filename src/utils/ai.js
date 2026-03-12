@@ -9,21 +9,22 @@ export async function runAIQuery(question, lang) {
     : `Anda adalah mesin analisis AI Pantau Pendidikan. Jawab pertanyaan menggunakan data pendidikan Indonesia yang nyata dan dapat diverifikasi dari BPS, Kemendikdasmen, Rapor Pendidikan, KPAI, Dapodik, EMIS, data APBN/APBD, dan PISA/OECD. JANGAN membuat statistik. Jawab HANYA dengan objek JSON (tanpa markdown): {"summary":"ringkasan 2-3 kalimat","insights":["temuan 1","temuan 2","temuan 3","temuan 4"],"chartType":"bar"|"line"|"comparison"|"none","chartData":[{"label":"...","value":number}],"unit":"label grafik","highlight":"high"|"low"|"neutral","source":"kutipan sumber"}`;
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch('/api/ai/generateContent', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: "user", content: question }]
+        system_instruction: { parts: [{ text: systemPrompt }] },
+        contents: [{ parts: [{ text: question }] }],
+        generationConfig: {
+          response_mime_type: "application/json"
+        }
       }),
     });
 
     if (!response.ok) throw new Error(`API ${response.status}`);
 
     const data = await response.json();
-    const raw = data.content.map(b => b.text || "").join("").trim().replace(/^```json\s*/i, "").replace(/\s*```$/i, "").trim();
+    const raw = data.candidates[0].content.parts[0].text;
     return JSON.parse(raw);
   } catch (err) {
     console.error("AI Query Error:", err);
