@@ -4,8 +4,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-ARG VITE_GEMINI_API_KEY
-ENV VITE_GEMINI_API_KEY=$VITE_GEMINI_API_KEY
 RUN npm run build
 
 # Stage 2: Serve
@@ -25,7 +23,7 @@ server {
 
     location ~ ^/api/ai/(.*) {
         resolver 8.8.8.8;
-        proxy_pass https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:\$1?key=\$GEMINI_API_KEY;
+        proxy_pass https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:\$1?key=\$GEMINI_API_KEY;
         proxy_set_header Content-Type "application/json";
         proxy_pass_request_body on;
         proxy_set_header Host generativelanguage.googleapis.com;

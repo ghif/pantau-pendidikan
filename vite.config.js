@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => {
             const model = "gemini-3-flash-preview"; // Latest stable fallback
             const action = path.replace(/^\/api\/ai\/?/, '') || 'generateContent';
-            return `/v1beta/models/${model}:${action}?key=${env.VITE_GEMINI_API_KEY}`;
+            return `/v1beta/models/${model}:${action}?key=${env.GEMINI_API_KEY}`;
           },
         },
       },
