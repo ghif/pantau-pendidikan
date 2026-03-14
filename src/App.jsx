@@ -9,7 +9,7 @@ import "./styles/index.css";
 
 export default function App() {
   const [lang, setLang] = useState("id");
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
   const [page, setPage] = useState("home"); // "home" | "sources"
   const [query, setQuery] = useState("");
   const [result, setResult] = useState(null);
