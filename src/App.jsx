@@ -32,7 +32,60 @@ export default function App() {
       resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
 
-    const data = await runAIQuery(text, lang);
+    // const data = await runAIQuery(text, lang);
+    // console.log(data)
+    // Trend skor PISA Indonesia sejak 2009
+    const data = JSON.parse(`
+{
+    "summary": "Skor PISA Indonesia dalam literasi membaca, matematika, dan sains menunjukkan tren penurunan signifikan pada hasil terbaru tahun 2022 dibandingkan periode sebelumnya. Meskipun skor mengalami penurunan secara poin, peringkat global Indonesia cenderung membaik karena penurunan performa yang lebih drastis terjadi di banyak negara lain selama pandemi COVID-19.",
+    "title": "Tren Skor PISA Indonesia Mengalami Penurunan Signifikan Terutama pada Literasi Membaca",
+    "insights": [
+        {
+            "finding": "Skor membaca Indonesia pada PISA 2022 turun ke titik terendah sejak 2009, yaitu 359 poin dari sebelumnya 371 pada 2018.",
+            "source": "https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53123254-en.html"
+        },
+        {
+            "finding": "Skor matematika Indonesia di tahun 2022 mencapai 366, turun 13 poin dibandingkan skor 379 pada PISA 2018.",
+            "source": "https://www.kemdikbud.go.id/main/blog/2023/12/peringkat-indonesia-pada-pisa-2022-naik-5-sampai-6-posisi-dibanding-2018"
+        },
+        {
+            "finding": "Performa literasi sains Indonesia juga menurun dari 396 poin di tahun 2018 menjadi 383 poin pada tahun 2022.",
+            "source": "https://gpseducation.oecd.org/CountryProfile?primaryCountry=IDN&treshold=10&topic=PI"
+        },
+        {
+            "finding": "Indonesia pernah mencapai skor sains tertinggi pada siklus 2015 dengan raihan 403 poin.",
+            "source": "https://www.oecd.org/en/publications/pisa-2015-results-volume-i_9789264266490-en.html"
+        }
+    ],
+    "chartType": "line",
+    "chartData": [
+        {
+            "label": "2009",
+            "value": 402
+        },
+        {
+            "label": "2012",
+            "value": 396
+        },
+        {
+            "label": "2015",
+            "value": 397
+        },
+        {
+            "label": "2018",
+            "value": 371
+        },
+        {
+            "label": "2022",
+            "value": 359
+        }
+    ],
+    "chartTitle": "Tren Penurunan Skor Literasi Membaca PISA Indonesia (2009-2022)",
+    "unit": "Skor PISA",
+    "highlight": "low",
+    "chartSource": "https://www.oecd.org/en/publications/pisa-2022-results-volume-i_53123254-en.html"
+}
+    `)
     setResult(data);
     setLoading(false);
   }, [query, lang]);

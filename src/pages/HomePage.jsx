@@ -1,3 +1,6 @@
+import { toBlob } from "html-to-image";
+import { BsCopy } from 'react-icons/bs';
+
 import { SUGGESTED_QUERIES as QUERIES_DATA } from "../data/queries";
 import { STRINGS as STRINGS_DATA } from "../data/strings";
 import { BarChart, LineChart, ComparisonChart } from "../components/Charts";
@@ -14,6 +17,25 @@ export function HomePage({
 
   const categories = [...new Set(QUERIES.map(q => q.category))];
   const filteredQueries = filter ? QUERIES.filter(q => q.category === filter) : QUERIES;
+
+  const copyImageToClipboard = async () => {
+    if (resultRef.current === null) return;
+
+    try {
+      // 1. Convert div to Blob
+      const blob = await toBlob(resultRef.current, { quality: 0.95 });
+      
+      // 2. Write to clipboard
+      if (blob) {
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob })
+        ]);
+        alert('Image copied to clipboard!');
+      }
+    } catch (error) {
+      console.error('Error copying to clipboard:', error);
+    }
+  };
 
   return (
     <>
@@ -84,7 +106,7 @@ export function HomePage({
                   {/* for the time being, sharing the result is good enough */}
                   {/* CSV download will be implemented soon after */}
                   {/*<button className={styles.actionBtn}>{S.downloadCSV}</button>*/}
-                  <button className={styles.actionBtn}>{S.share}</button>
+                  <button className={styles.actionBtn} onClick={copyImageToClipboard}><BsCopy /> {S.share}</button>
                 </div>
               </div>
               <div className={styles.resultContent}>
