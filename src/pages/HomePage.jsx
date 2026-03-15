@@ -1704,7 +1704,7 @@ export function HomePage({
       q.includes("pengeluaran") || q.includes("pembiayaan") || q.includes("fiskal");
   })();
 
-  const copyImageToClipboard = async () => {
+  const copyAnalysisToClipboard = async () => {
     if (resultRef.current === null) return;
     try {
       const blob = await toBlob(resultRef.current, { quality: 0.95 });
@@ -1712,10 +1712,10 @@ export function HomePage({
         await navigator.clipboard.write([
           new ClipboardItem({ 'image/png': blob })
         ]);
-        alert('Image copied to clipboard!');
+        alert(S.shareSuccessful);
       }
     } catch (error) {
-      console.error('Error copying to clipboard:', error);
+      console.error(S.shareError, error);
     }
   };
 
@@ -1787,7 +1787,7 @@ export function HomePage({
                       <div style={{ fontSize: "0.95rem", fontWeight: "700", color: T.text }}>{result._query || lastQuery}</div>
                     </div>
                     <div style={{ display: "flex", gap: "0.5rem", flexShrink: 0 }}>
-                      <button style={{ background: T.blueSub, border: `1px solid ${T.borderHover}`, color: T.textSub, fontSize: "0.72rem", fontWeight: "600", padding: "0.35rem 0.85rem", borderRadius: "6px", cursor: "pointer", fontFamily: "inherit" }}>{S.share}</button>
+                      <button style={{ background: T.blueSub, border: `1px solid ${T.borderHover}`, color: T.textSub, fontSize: "0.72rem", fontWeight: "600", padding: "0.35rem 0.85rem", borderRadius: "6px", cursor: "pointer", fontFamily: "inherit" }} onClick={copyAnalysisToClipboard}><BsCopy /> {S.share}</button>
                     </div>
                   </div>
                   <div style={{ display: "grid", gridTemplateColumns: (result.chartType && result.chartType !== "none" && result.chartData?.length > 0) || isSpendingQuery ? (["dual_axis","dual","scatter","line_dual"].includes(result.chartType) ? "1fr 1.6fr" : "1fr 1.25fr") : "1fr", gap: 0 }}>
