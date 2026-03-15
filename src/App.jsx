@@ -4,13 +4,16 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { HomePage } from "./pages/HomePage";
 import { DataSourcesPage } from "./pages/DataSourcesPage";
+import { PublicationsPage } from "./pages/PublicationsPage";
+import { AboutPage } from "./pages/AboutPage";
 import { runAIQuery } from "./utils/ai";
+import { getTheme } from "./utils/theme";
 import "./styles/index.css";
 
 export default function App() {
   const [lang, setLang] = useState("id");
   const [dark, setDark] = useState(false);
-  const [page, setPage] = useState("home"); // "home" | "sources"
+  const [page, setPage] = useState("home"); // "home" | "sources" | "pub" | "about"
   const [query, setQuery] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -48,6 +51,8 @@ export default function App() {
     lang, dark, page, setPage, setDark, toggleLang
   };
 
+  const T = getTheme(dark);
+
   return (
     <div className={dark ? "dark" : ""} style={{ 
       minHeight: "100vh", 
@@ -59,7 +64,11 @@ export default function App() {
 
       <div style={{ animation: "fadeUp 0.4s ease both" }}>
         {page === "sources" ? (
-          <DataSourcesPage lang={lang} />
+          <DataSourcesPage lang={lang} T={T} dark={dark} />
+        ) : page === "pub" ? (
+          <PublicationsPage lang={lang} T={T} dark={dark} />
+        ) : page === "about" ? (
+          <AboutPage lang={lang} T={T} dark={dark} />
         ) : (
           <HomePage 
             {...commonProps}
