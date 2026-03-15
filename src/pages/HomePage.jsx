@@ -174,7 +174,7 @@ function MicroLineChart({ data, unit, color, T }) {
   return (
     <div style={{ marginTop: "0.75rem" }}>
       <p style={{ fontSize: "0.62rem", fontWeight: "700", color: T.textMuted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.4rem" }}>{unit}</p>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         <defs>
           <linearGradient id={`mg-${color.replace("#","")}`} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={color} stopOpacity="0.2" />
@@ -211,7 +211,7 @@ function MicroDualLineChart({ negeriData, swastaData, unit, T }) {
   return (
     <div style={{ marginTop: "0.75rem" }}>
       <p style={{ fontSize: "0.62rem", fontWeight: "700", color: T.textMuted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.4rem" }}>{unit}</p>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         <path d={pathN} fill="none" stroke="#0d6efd" strokeWidth="2" strokeLinejoin="round" />
         <path d={pathS} fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinejoin="round" strokeDasharray="4,3" />
         {negeriData.map((d, i) => (
@@ -307,7 +307,7 @@ function PisaProficiencyView({ domain, color, labels, T }) {
           </span>
         ))}
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         {[10, 20, 30, 40, 50].map(v => (
           <g key={v}>
             <line x1={padL} x2={W - padR} y1={sy(v)} y2={sy(v)} stroke={T.border} strokeWidth="1" strokeDasharray="3,3" />
@@ -352,7 +352,7 @@ function PisaTrendView({ domain, color, labels, T }) {
   return (
     <div>
       <p style={{ fontSize: "0.7rem", color: T.textMuted, marginBottom: "0.5rem" }}>{labels.meanLabel}</p>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         <defs>
           <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={color} stopOpacity="0.2" />
@@ -399,7 +399,7 @@ function PisaLocationView({ labels, T }) {
   return (
     <div>
       <p style={{ fontSize: "0.7rem", color: T.textMuted, marginBottom: "0.5rem" }}>{labels.locationLabel}</p>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         {[340, 360, 380, 400, 420, 440].filter(v => v >= minV && v <= maxV).map(v => (
           <g key={v}>
             <line x1={padL} x2={W - padR} y1={sy(v)} y2={sy(v)} stroke={T.border} strokeWidth="1" strokeDasharray="3,3" />
@@ -435,7 +435,7 @@ function PisaOwnershipView({ labels, T }) {
   return (
     <div>
       <p style={{ fontSize: "0.7rem", color: T.textMuted, marginBottom: "0.5rem" }}>{labels.ownershipLabel}</p>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         {[350, 370, 390, 410].filter(v => v >= minV && v <= maxV).map(v => (
           <g key={v}>
             <line x1={padL} x2={W - padR} y1={sy(v)} y2={sy(v)} stroke={T.border} strokeWidth="1" strokeDasharray="3,3" />
@@ -764,7 +764,7 @@ function DeProficiencyChart({ lang, T }) {
   return (
     <div>
       <div style={{ overflowX: "auto" }}>
-        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", minWidth: 360, height: 150 }}>
+        <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", minWidth: 360, height: "auto", display: "block" }}>
           {[20, 30, 40, 50].map(v => {
             const y = padT + (1 - v / maxV) * (H - padT - padB);
             return (
@@ -929,7 +929,7 @@ function MixedLineChart({ data, unit, T, lang }) {
   return (
     <div>
       <p style={{ fontSize: "0.68rem", color: T.textMuted, marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.09em", fontWeight: "600" }}>{unit}</p>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         <defs>
           <linearGradient id="mixedVerGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#0d6efd" stopOpacity="0.18" />
@@ -1379,7 +1379,7 @@ function DeSpendingChart({ T, lang }) {
     const color = "#d97706";
 
     return (
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         <defs>
           <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={color} stopOpacity="0.22" />
@@ -1790,8 +1790,8 @@ export function HomePage({
                       <button style={{ background: T.blueSub, border: `1px solid ${T.borderHover}`, color: T.textSub, fontSize: "0.72rem", fontWeight: "600", padding: "0.35rem 0.85rem", borderRadius: "6px", cursor: "pointer", fontFamily: "inherit" }} onClick={copyAnalysisToClipboard}><BsCopy /> {S.share}</button>
                     </div>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: (result.chartType && result.chartType !== "none" && result.chartData?.length > 0) || isSpendingQuery ? (["dual_axis","dual","scatter","line_dual"].includes(result.chartType) ? "1fr 1.6fr" : "1fr 1.25fr") : "1fr", gap: 0 }}>
-                    <div style={{ padding: "1.4rem", borderRight: (result.chartType && result.chartType !== "none" && result.chartData?.length > 0) || isSpendingQuery ? `1px solid ${T.border}` : "none" }}>
+                  <div className={styles.resultContent} style={{ gridTemplateColumns: (result.chartType && result.chartType !== "none" && result.chartData?.length > 0) || isSpendingQuery ? (window.innerWidth < 768 ? "1fr" : (["dual_axis","dual","scatter","line_dual"].includes(result.chartType) ? "1fr 1.6fr" : "1fr 1.25fr")) : "1fr" }}>
+                    <div style={{ padding: "1.4rem", borderRight: (window.innerWidth >= 768 && ((result.chartType && result.chartType !== "none" && result.chartData?.length > 0) || isSpendingQuery)) ? `1px solid ${T.border}` : "none", borderBottom: (window.innerWidth < 768 && ((result.chartType && result.chartType !== "none" && result.chartData?.length > 0) || isSpendingQuery)) ? `1px solid ${T.border}` : "none" }}>
                       {/* Always-visible headline */}
                       <h3 style={{ fontSize: "1.05rem", fontWeight: "800", color: T.text, lineHeight: 1.35, marginBottom: "0.75rem", letterSpacing: "-0.015em" }}>
                         {result.headline
