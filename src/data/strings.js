@@ -18,7 +18,7 @@ export const STRINGS = {
     keyFindings: "Temuan Kunci",
     dataSource: "Sumber",
     downloadCSV: "↓ Unduh CSV",
-    share: "🔗 Bagikan",
+    share: "Bagikan",
     popularAnalyses: "Analisis Populer",
     popularSub: "Klik untuk langsung menjalankan analisis berbasis data pendidikan publik Indonesia",
     filterAll: "Semua",
@@ -80,7 +80,7 @@ export const STRINGS = {
     dataSource: "Source",
     // ... continues with same keys ...
     downloadCSV: "↓ Download CSV",
-    share: "🔗 Share",
+    share: "Share",
     popularAnalyses: "Popular Analyses",
     popularSub: "Click to run analyses based on Indonesia's public education data",
     filterAll: "All",

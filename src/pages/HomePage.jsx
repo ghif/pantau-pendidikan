@@ -1,3 +1,6 @@
+import { toBlob } from "html-to-image";
+import { BsCopy } from 'react-icons/bs';
+
 import { SUGGESTED_QUERIES as QUERIES_DATA } from "../data/queries";
 import { STRINGS as STRINGS_DATA } from "../data/strings";
 import { BarChart, LineChart, ComparisonChart } from "../components/Charts";
@@ -14,6 +17,25 @@ export function HomePage({
 
   const categories = [...new Set(QUERIES.map(q => q.category))];
   const filteredQueries = filter ? QUERIES.filter(q => q.category === filter) : QUERIES;
+
+  const copyImageToClipboard = async () => {
+    if (resultRef.current === null) return;
+
+    try {
+      // 1. Convert div to Blob
+      const blob = await toBlob(resultRef.current, { quality: 0.95 });
+      
+      // 2. Write to clipboard
+      if (blob) {
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob })
+        ]);
+        alert('Image copied to clipboard!');
+      }
+    } catch (error) {
+      console.error('Error copying to clipboard:', error);
+    }
+  };
 
   return (
     <>
@@ -81,37 +103,47 @@ export function HomePage({
                   <div className={styles.analysisQuery}>{query}</div>
                 </div>
                 <div className={styles.resultActions}>
-                  <button className={styles.actionBtn}>{S.downloadCSV}</button>
-                  <button className={styles.actionBtn}>{S.share}</button>
+                  {/* for the time being, sharing the result is good enough */}
+                  {/* CSV download will be implemented soon after */}
+                  {/*<button className={styles.actionBtn}>{S.downloadCSV}</button>*/}
+                  <button className={styles.actionBtn} onClick={copyImageToClipboard}><BsCopy /> {S.share}</button>
+                </div>
+              </div>
+              <div className={styles.resultContent}>
+                <div className={styles.resultTextColumn}>
+                  <div className={styles.summaryTitle}>{ result.title }</div>
+                  <p className={styles.summaryText}>
+                    {typingDone ? result.summary : <TypingText text={result.summary || ""} onDone={() => setTypingDone(true)} />}
+                  </p>
                 </div>
               </div>
               <div className={styles.resultContent} style={{ gridTemplateColumns: result.chartType !== "none" ? "1fr 1.25fr" : "1fr" }}>
                 <div className={styles.resultTextColumn} style={{ borderRight: result.chartType !== "none" ? "1px solid var(--border)" : "none" }}>
-                  <p className={styles.summaryText}>
-                    {typingDone ? result.summary : <TypingText text={result.summary || ""} onDone={() => setTypingDone(true)} />}
-                  </p>
                   {result.insights?.length > 0 && <>
                     <p className={styles.keyFindingsLabel}>{S.keyFindings}</p>
                     {result.insights.map((ins, i) => (
                       <div key={i} className={styles.insightItem} style={{ animationDelay: `${0.1 + i * 0.07}s` }}>
                         <span className={styles.insightDot} />
-                        <span className={styles.insightText}>{ins}</span>
+                        <span className={styles.insightText}>
+                          {ins.finding} <a href={ins.source}>{S.dataSource}</a>
+                        </span>
                       </div>
                     ))}
                   </>}
-                  {result.source && (
-                    <div className={styles.sourceInfo}>
-                      <span className={styles.sourceLabel}>{S.dataSource}: </span>{result.source}
-                    </div>
-                  )}
                 </div>
                 {result.chartType !== "none" && result.chartData && (
                   <div className={styles.chartColumn}>
-                    {result.chartType === "bar" && <BarChart data={result.chartData} unit={result.unit} highlight={result.highlight} />}
-                    {result.chartType === "line" && <LineChart data={result.chartData} unit={result.unit} />}
-                    {result.chartType === "comparison" && <ComparisonChart data={result.chartData} unit={result.unit} />}
+                    {result.chartType === "bar" && <BarChart data={result.chartData} unit={result.chartTitle} highlight={result.highlight} />}
+                    {result.chartType === "line" && <LineChart data={result.chartData} unit={result.chartTitle} />}
+                    {result.chartType === "comparison" && <ComparisonChart data={result.chartData} unit={result.chartTitle} />}
+                    {result.chartSource && (
+                      <div className={styles.sourceInfo}>
+                        <span className={styles.sourceLabel}>{S.dataSource}: </span><a href={result.chartSource}>{result.chartSource}</a>
+                      </div>
+                    )}
                   </div>
                 )}
+                
               </div>
             </div>
           )}

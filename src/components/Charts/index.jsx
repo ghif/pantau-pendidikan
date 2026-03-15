@@ -56,7 +56,7 @@ export function LineChart({ data, unit }) {
         {pts.map((p, i) => (
           <g key={i}>
             <circle cx={p.x} cy={p.y} r={4} fill="#0d6efd" />
-            <text x={p.x} y={p.y - 11} textAnchor="middle" fill="var(--text)" fontSize="11" fontWeight="700" fontFamily="sans-serif">{p.value}T</text>
+            <text x={p.x} y={p.y - 11} textAnchor="middle" fill="var(--text)" fontSize="11" fontWeight="700" fontFamily="sans-serif">{p.value}</text>
             <text x={p.x} y={H - 5} textAnchor="middle" fill="var(--text-muted)" fontSize="10" fontFamily="sans-serif">{p.label}</text>
           </g>
         ))}
