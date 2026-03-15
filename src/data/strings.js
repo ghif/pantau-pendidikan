@@ -22,6 +22,7 @@ export const STRINGS = {
     popularAnalyses: "Analisis Populer",
     popularSub: "Klik untuk langsung menjalankan analisis berbasis data pendidikan publik Indonesia",
     filterAll: "Semua",
+    testimonials: "Testimoni",
     whyTitle: "Mengapa Menggunakan Portal Ini?",
     whyCards: [
       { icon: "✅", color: "#16a34a", bg: "#dcfce7", title: "Berbasis Data Publik", desc: "Seluruh analisis mengacu pada data resmi yang dipublikasikan secara terbuka oleh lembaga pemerintah." },
@@ -83,6 +84,7 @@ export const STRINGS = {
     popularAnalyses: "Popular Analyses",
     popularSub: "Click to run analyses based on Indonesia's public education data",
     filterAll: "All",
+    testimonials: "Testimonials",
     whyTitle: "Why Use This Portal?",
     whyCards: [
       { icon: "✅", color: "#16a34a", bg: "#dcfce7", title: "Public Data Only", desc: "All analyses are grounded in official data published openly by government agencies." },
