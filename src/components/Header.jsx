@@ -7,7 +7,6 @@ export function Header({ lang, dark, page, setPage, setDark, toggleLang }) {
   const navItems = [
     { key: "home",    label: S.navHome },
     { key: "sources", label: S.navSources },
-    { key: "analysis",label: S.navAnalysis },
     { key: "pub",     label: S.navPublications },
     { key: "about",   label: S.navAbout },
   ];
@@ -28,7 +27,7 @@ export function Header({ lang, dark, page, setPage, setDark, toggleLang }) {
         <nav className={styles.nav}>
           {navItems.map(item => (
             <button key={item.key}
-              onClick={() => setPage(item.key === "analysis" || item.key === "pub" || item.key === "about" ? "home" : item.key)}
+              onClick={() => setPage(item.key)}
               className={`${styles.navButton} ${page === item.key ? styles.navButtonActive : ""}`}
             >{item.label}</button>
           ))}
