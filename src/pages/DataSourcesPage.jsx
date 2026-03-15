@@ -123,7 +123,7 @@ export function DataSourcesPage({ lang, T, dark }) {
               </div>
 
               {/* Source cards */}
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: "1rem" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
                 {sources.map(source => {
                   const isExpanded = expanded === source.id;
                   return (
@@ -197,13 +197,13 @@ export function DataSourcesPage({ lang, T, dark }) {
         })}
 
         {/* Integrity commitment box */}
-        <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: "14px", padding: "1.75rem 2rem", marginTop: "1rem" }}>
+        <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: "14px", padding: "1.5rem 1.25rem", marginTop: "1rem" }}>
           <div style={{ display: "flex", gap: "1rem", alignItems: "flex-start", flexWrap: "wrap" }}>
             <div style={{ width: "44px", height: "44px", borderRadius: "10px", background: "rgba(16,163,74,0.12)", border: "1px solid rgba(16,163,74,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem", flexShrink: 0 }}>🔒</div>
-            <div style={{ flex: 1, minWidth: "240px" }}>
+            <div style={{ flex: 1, minWidth: "200px" }}>
               <h3 style={{ fontSize: "0.95rem", fontWeight: "800", color: T.text, marginBottom: "0.3rem" }}>{S.integrityTitle}</h3>
               <p style={{ fontSize: "0.8rem", color: T.textSub, lineHeight: 1.65, marginBottom: "0.85rem" }}>{S.integrityDesc}</p>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "0.5rem" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "0.5rem" }}>
                 {S.integrityPoints.map((pt, i) => (
                   <div key={i} style={{ display: "flex", gap: "0.55rem", alignItems: "flex-start" }}>
                     <span style={{ color: "#16a34a", fontWeight: "700", flexShrink: 0, marginTop: "1px" }}>✓</span>

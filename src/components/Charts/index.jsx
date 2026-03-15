@@ -13,15 +13,15 @@ export function BarChart({ data, unit, highlight, T }) {
       {data.map((d, i) => {
         const pct = (d.value / max) * 100;
         const color = palette[i % palette.length];
-        const showInside = pct > 20;
+        const showInside = pct > 25;
         return (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.55rem" }}>
-            <span style={{ width: "130px", fontSize: "0.74rem", color: T.textSub, textAlign: "right", flexShrink: 0, lineHeight: 1.3 }}>{d.label}</span>
-            <div style={{ flex: 1, background: T.trackBg, borderRadius: "4px", overflow: "hidden", height: "28px", position: "relative" }}>
+            <span style={{ width: "clamp(80px, 25%, 130px)", fontSize: "0.72rem", color: T.textSub, textAlign: "right", flexShrink: 0, lineHeight: 1.2, wordBreak: "break-word" }}>{d.label}</span>
+            <div style={{ flex: 1, background: T.trackBg, borderRadius: "4px", overflow: "hidden", height: "26px", position: "relative" }}>
               <div style={{ width: `${pct}%`, height: "100%", background: color, borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "flex-end", paddingRight: showInside ? "8px" : "0", transition: "width 0.8s cubic-bezier(0.4,0,0.2,1)", minWidth: "4px" }}>
-                {showInside && <span style={{ fontSize: "0.7rem", fontWeight: "700", color: "#fff", whiteSpace: "nowrap" }}>{d.value}</span>}
+                {showInside && <span style={{ fontSize: "0.66rem", fontWeight: "700", color: "#fff", whiteSpace: "nowrap" }}>{d.value}</span>}
               </div>
-              {!showInside && <span style={{ position: "absolute", left: `calc(${pct}% + 6px)`, top: "50%", transform: "translateY(-50%)", fontSize: "0.7rem", fontWeight: "700", color: T.text, whiteSpace: "nowrap" }}>{d.value}</span>}
+              {!showInside && <span style={{ position: "absolute", left: `calc(${pct}% + 6px)`, top: "50%", transform: "translateY(-50%)", fontSize: "0.66rem", fontWeight: "700", color: T.text, whiteSpace: "nowrap" }}>{d.value}</span>}
             </div>
           </div>
         );
@@ -45,10 +45,14 @@ export function LineChart({ data, unit, T }) {
   const grids = [];
   for (let v = Math.ceil(minV / gridStep) * gridStep; v <= maxV; v += gridStep) grids.push(v);
   const displayGrids = grids.filter((_, i) => i % Math.ceil(grids.length / 5) === 0).slice(0, 5);
+  
+  // For mobile, skip every other label if there are too many
+  const skipLabels = data.length > 8;
+
   return (
     <div>
       <p style={{ fontSize: "0.68rem", color: T.textMuted, marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.09em", fontWeight: "600" }}>{unit}</p>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
         <defs>
           <linearGradient id="lcGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#0d6efd" stopOpacity="0.22" />
@@ -63,13 +67,18 @@ export function LineChart({ data, unit, T }) {
         ))}
         <path d={fill} fill="url(#lcGrad)" />
         <path d={path} fill="none" stroke="#0d6efd" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
-        {data.map((d, i) => (
-          <g key={i}>
-            <circle cx={sx(i)} cy={sy(d.value)} r={4} fill="#0d6efd" stroke={T.surface} strokeWidth="2" />
-            <text x={sx(i)} y={sy(d.value) - 10} textAnchor="middle" fill={T.text} fontSize="9.5" fontWeight="700" fontFamily="sans-serif">{d.value}</text>
-            <text x={sx(i)} y={H - padB + 14} textAnchor="middle" fill={T.textMuted} fontSize="9" fontFamily="sans-serif">{d.label}</text>
-          </g>
-        ))}
+        {data.map((d, i) => {
+          const showLabel = !skipLabels || i % 2 === 0 || i === data.length - 1;
+          return (
+            <g key={i}>
+              <circle cx={sx(i)} cy={sy(d.value)} r={4} fill="#0d6efd" stroke={T.surface} strokeWidth="2" />
+              <text x={sx(i)} y={sy(d.value) - 10} textAnchor="middle" fill={T.text} fontSize="9.5" fontWeight="700" fontFamily="sans-serif">{d.value}</text>
+              {showLabel && (
+                <text x={sx(i)} y={H - padB + 14} textAnchor="middle" fill={T.textMuted} fontSize="9" fontFamily="sans-serif">{d.label}</text>
+              )}
+            </g>
+          );
+        })}
         <line x1={padL} x2={W - padR} y1={H - padB} y2={H - padB} stroke={T.border} strokeWidth="1.5" />
       </svg>
     </div>
