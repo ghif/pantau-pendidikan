@@ -1,9 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { toBlob } from "html-to-image";
 import { BsCopy } from 'react-icons/bs';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import styles from "../styles/HomePage.module.css";
 
 import { SUGGESTED_QUERIES } from "../data/queries";
 import { STRINGS } from "../data/strings";
+import { TESTIMONIES } from "../data/testimonies";
 import { PISA_DATA, SPENDING_DATA, TOTAL_SPENDING_DATA } from "../data/official";
 import { BarChart, LineChart, ComparisonChart, ScatterChart, DualAxisChart } from "../components/Charts";
 import { TypingText } from "../components/TypingText";
@@ -1688,6 +1693,15 @@ export function HomePage({
   const S = STRINGS[lang];
   const QUERIES = SUGGESTED_QUERIES[lang];
   const T = getTheme(dark);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true, // Optional: enable autoplay
+    autoplaySpeed: 2000,
+  };
 
   const categories = [...new Set(QUERIES.map(q => q.category))];
   const filteredQueries = filter ? QUERIES.filter(q => q.category === filter) : QUERIES;
@@ -1909,6 +1923,25 @@ export function HomePage({
                     </div>
                   </button>
                 ))}
+              </div>
+            </section>
+
+            {/* TESTIMONIES */}
+            <section style={{ marginTop: "3rem" }}>
+              <h2 style={{ fontSize: "1.15rem", fontWeight: "800", color: T.text, marginBottom: "1.1rem" }}>{S.testimonials}</h2>
+              <div style={{ maxWidth: 600, margin: 'auto' }}>
+                <Slider {...settings}>
+                  {TESTIMONIES.map((item, i) => (
+                    <div key={i} className={styles.testimonial}>
+                      <figure>
+                        <blockquote><p>"{item.testimony}"</p></blockquote>
+                        <figcaption>
+                          — <span className={styles.testimonialAuthor}>{item.author}</span>, <cite className={styles.testimonialCompany}>{item.company}</cite>
+                        </figcaption>
+                      </figure>
+                    </div>
+                  ))}
+                </Slider>
               </div>
             </section>
 
