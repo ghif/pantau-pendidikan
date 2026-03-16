@@ -615,7 +615,7 @@
   background-color: #f9f9f9;
   font-style: italic;
   border-radius: 10px;
-  height: 200px;
+  /*height: 300px;*/
 }
 
 .testimonial blockquote p {
@@ -626,6 +626,7 @@
 }
 
 .testimonial figcaption {
+  margin-top: 1rem;
   text-align: right;
   font-style: normal;
   font-weight: bold;
@@ -639,6 +640,10 @@
 .testimonialCompany {
   font-style: normal; /* Removes default italic from <cite> */
   color: #777;
+}
+
+.testimonialCompany a {
+  color: red;
 }
 
 .whySection {
