@@ -1903,7 +1903,7 @@ export function HomePage({
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true, // Optional: enable autoplay
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
   };
 
   const categories = [...new Set(QUERIES.map(q => q.category))];
@@ -2132,14 +2132,14 @@ export function HomePage({
             {/* TESTIMONIES */}
             <section style={{ marginTop: "3rem" }}>
               <h2 style={{ fontSize: "1.15rem", fontWeight: "800", color: T.text, marginBottom: "1.1rem" }}>{S.testimonials}</h2>
-              <div style={{ maxWidth: 600, margin: 'auto' }}>
+              <div style={{ maxWidth: 800, margin: 'auto' }}>
                 <Slider {...settings}>
                   {TESTIMONIES.map((item, i) => (
                     <div key={i} className={styles.testimonial}>
                       <figure>
                         <blockquote><p>"{item.testimony}"</p></blockquote>
                         <figcaption>
-                          — <span className={styles.testimonialAuthor}>{item.author}</span>, <cite className={styles.testimonialCompany}>{item.company}</cite>
+                          — <span className={styles.testimonialAuthor}>{item.author}</span>, <cite className={styles.testimonialCompany} dangerouslySetInnerHTML={{ __html: item.company }} ></cite>
                         </figcaption>
                       </figure>
                     </div>
