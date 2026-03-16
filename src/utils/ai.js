@@ -1,4 +1,9 @@
-import { PISA_DATA, SPENDING_DATA, TOTAL_SPENDING_DATA } from "../data/official";
+import {
+  PISA_DATA,
+  SPENDING_DATA,
+  TOTAL_SPENDING_DATA,
+  ASESMEN_NASIONAL_DATA,
+} from "../data/official";
 
 export async function runAIQuery(question, lang) {
   const S = {
@@ -21,6 +26,13 @@ export async function runAIQuery(question, lang) {
 
   const totalSpendingSummary = TOTAL_SPENDING_DATA.series.map(d =>
     `${d.year}(${d.status}): Total=${d.totalT}T (BPP=${d.bppT}T + TKD~${d.tkdT}T + Pembiayaan~${d.pembiayaanT}T) | ${d.pctOfTotal}% of total APBN | YoY growth=${d.growthPct}%`
+  ).join("; ");
+
+  const anLiteracySummary = ASESMEN_NASIONAL_DATA.data.provinces.map(
+    d => `${d.name.replace('Prov. ', '')}: ${d.levels.SEMUA.literacy}`
+  ).join("; ");
+  const anNumeracySummary = ASESMEN_NASIONAL_DATA.data.provinces.map(
+    d => `${d.name.replace('Prov. ', '')}: ${d.levels.SEMUA.numeracy}`
   ).join("; ");
 
   const dataContext = `
@@ -49,14 +61,25 @@ Source: ${TOTAL_SPENDING_DATA.meta.source}
 Chart: ${TOTAL_SPENDING_DATA.meta.chart}
 URL: ${TOTAL_SPENDING_DATA.meta.url}
 Note: ${TOTAL_SPENDING_DATA.meta.note}
-Mandate compliance: ${TOTAL_SPENDING_DATA.meta.constitutionalMandate20pct}`.trim();
+Mandate compliance: ${TOTAL_SPENDING_DATA.meta.constitutionalMandate20pct}
+
+VERIFIED DATASET 4 - Indonesia National Assessment (Asesmen Nasional) for literacy:
+${anLiteracySummary}
+Source: ${ASESMEN_NASIONAL_DATA.meta.source}
+URL: ${ASESMEN_NASIONAL_DATA.meta.url}
+
+VERIFIED DATASET 5 - Indonesia National Assessment (Asesmen Nasional) for numeracy:
+${anNumeracySummary}
+Source: ${ASESMEN_NASIONAL_DATA.meta.source}
+URL: ${ASESMEN_NASIONAL_DATA.meta.url}
+  `.trim();
 
   const systemPrompt = lang === "en"
     ? `You are the AI analysis engine for Pantau Pendidikan, an independent platform monitoring Indonesia's education system.
 
 IMPORTANT: Always respond entirely in English, regardless of what language the user's question is written in.
 
-VERIFIED DATASETS (always use these first for PISA and education spending):
+VERIFIED DATASETS (always use these first for PISA, education spending, and national assessment):
 ${dataContext}
 
 RESEARCH APPROACH:
@@ -91,7 +114,7 @@ CHART RULES:
 
 PENTING: Selalu jawab seluruhnya dalam Bahasa Indonesia, terlepas dari bahasa apa yang digunakan pengguna.
 
-DATASET TERVERIFIKASI (selalu gunakan lebih dahulu untuk PISA dan belanja pendidikan):
+DATASET TERVERIFIKASI (selalu gunakan lebih dahulu untuk PISA, belanja pendidikan, dan asesmen nasional):
 ${dataContext}
 
 PENDEKATAN RISET:
