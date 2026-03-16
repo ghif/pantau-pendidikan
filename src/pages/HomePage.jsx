@@ -9,7 +9,7 @@ import styles from "../styles/HomePage.module.css";
 import { SUGGESTED_QUERIES } from "../data/queries";
 import { STRINGS } from "../data/strings";
 import { TESTIMONIES } from "../data/testimonies";
-import { PISA_DATA, SPENDING_DATA, TOTAL_SPENDING_DATA } from "../data/official";
+import { PISA_DATA, SPENDING_DATA, TOTAL_SPENDING_DATA, ASESMEN_NASIONAL_DATA } from "../data/official";
 import { BarChart, LineChart, ComparisonChart, ScatterChart, DualAxisChart } from "../components/Charts";
 import { TypingText } from "../components/TypingText";
 import { getTheme } from "../utils/theme";
@@ -1483,6 +1483,148 @@ function DeSpendingChart({ T, lang }) {
   );
 }
 
+// Pure inline CSS for zero dependencies
+const stylesAN = {
+  container: {
+    fontFamily: 'sans-serif',
+    maxWidth: '800px',
+    margin: '0 auto',
+    padding: '24px',
+    backgroundColor: '#ffffff',
+    borderRadius: '8px',
+  },
+  title: {
+    textAlign: 'center',
+    color: '#333',
+    marginBottom: '24px'
+  },
+  chartArea: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px'
+  },
+  row: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%'
+  },
+  label: {
+    width: '160px',
+    textAlign: 'right',
+    paddingRight: '12px',
+    fontSize: '14px',
+    color: '#555',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  },
+  barContainer: {
+    flex: 1,
+    height: '28px',
+    backgroundColor: '#f0f4f8', // Light gray background track
+    borderRadius: '4px',
+    position: 'relative',
+    overflow: 'hidden'
+  },
+  barFill: {
+    height: '100%',
+    backgroundColor: '#079C11', // Blue fill
+    display: 'flex',
+    alignItems: 'center',
+    transition: 'width 0.5s ease-out'
+  },
+  scoreText: {
+    color: '#ffffff',
+    fontSize: '12px',
+    fontWeight: 'bold',
+    marginLeft: '8px'
+  }
+};
+
+function ANLiteracyChart({ lang }) {
+  // Clean the province names and sort descending by literacy score
+  const data = ASESMEN_NASIONAL_DATA.data.provinces
+    .map(prov => ({
+      name: prov.name.replace('Prov. ', ''),
+      score: prov.levels.SEMUA.literacy
+    }))
+    .sort((a, b) => b.score - a.score);
+
+  return (
+    <div style={stylesAN.container}>
+      <h2 style={stylesAN.title}>{lang === "id" ? "Kompetensi Literasi per Provinsi (2025)" : "Literacy Competency by Province (2025)"}</h2>
+      
+      <div style={stylesAN.chartArea}>
+        {data.map((item, index) => (
+          <div key={index} style={stylesAN.row}>
+            {/* Y-Axis Label */}
+            <div style={stylesAN.label} title={item.name}>
+              {item.name}
+            </div>
+            
+            {/* Bar Track & Fill */}
+            <div style={stylesAN.barContainer}>
+              <div 
+                style={{ 
+                  ...stylesAN.barFill, 
+                  width: `${item.score}%` // Dynamic width based on score
+                }}
+              >
+                {/* Score Text inside the bar */}
+                <span style={stylesAN.scoreText}>
+                  {item.score}%
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+function ANNumeracyChart({ lang }) {
+  // Clean the province names and sort descending by numeracy score
+  const data = ASESMEN_NASIONAL_DATA.data.provinces
+    .map(prov => ({
+      name: prov.name.replace('Prov. ', ''),
+      score: prov.levels.SEMUA.numeracy
+    }))
+    .sort((a, b) => b.score - a.score);
+
+  return (
+    <div style={stylesAN.container}>
+      <h2 style={stylesAN.title}>{lang === "id" ? "Kompetensi Numerasi per Provinsi (2025)" : "Numeracy Competency by Province (2025)"}</h2>
+      
+      <div style={stylesAN.chartArea}>
+        {data.map((item, index) => (
+          <div key={index} style={stylesAN.row}>
+            {/* Y-Axis Label */}
+            <div style={stylesAN.label} title={item.name}>
+              {item.name}
+            </div>
+            
+            {/* Bar Track & Fill */}
+            <div style={stylesAN.barContainer}>
+              <div 
+                style={{ 
+                  ...stylesAN.barFill, 
+                  width: `${item.score}%` // Dynamic width based on score
+                }}
+              >
+                {/* Score Text inside the bar */}
+                <span style={stylesAN.scoreText}>
+                  {item.score}%
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 function ZoomablePisaView({ children, T, lang }) {
   const [zoomed, setZoomed] = useState(false);
   return (
@@ -1506,12 +1648,14 @@ function ZoomablePisaView({ children, T, lang }) {
 function DataExplorer({ lang, T, onQuery }) {
   const [activeTab, setActiveTab] = useState("pisa"); // "pisa" | "spending"
   const [pisaView, setPisaView] = useState("trend");  // "trend" | "gap" | "proficiency" | "ownership" | "score_trend"
+  const [anView, setAnView] = useState("literacy");  // "literacy" | "numeracy"
   const [pisaDomain, setPisaDomain] = useState("reading");
 
   const labels = {
     id: {
       title: "Jelajah Data Resmi",
       sub: "Visualisasi langsung dari dataset PISA dan APBN yang telah diverifikasi",
+      tabAN: "Asesmen Nasional",
       tabPisa: "PISA Indonesia",
       tabSpending: "Belanja Pendidikan",
       viewTrend: "Tren Nasional",
@@ -1519,6 +1663,8 @@ function DataExplorer({ lang, T, onQuery }) {
       viewProf: "Tingkat Kemahiran",
       viewOwnership: "Negeri vs Swasta",
       viewScoreTrend: "Tren per Domain",
+      viewLiteracy: "Literasi",
+      viewNumeracy: "Numerasi",
       domainReading: "Membaca",
       domainMath: "Matematika",
       domainScience: "Sains",
@@ -1531,10 +1677,12 @@ function DataExplorer({ lang, T, onQuery }) {
       meanLabel: "Skor rata-rata nasional (skala 500)",
       ownershipLabel: "Skor membaca rata-rata berdasarkan kepemilikan sekolah",
       source: "Sumber: PISA Indonesia 2000–2022, Kemendikdasmen / OECD",
+      sourceAN: "Sumber: Asesmen Nasional 2025, Portal Data Pendidikan, Kementerian Pendidikan Dasar dan Menengah Republik Indonesia",
     },
     en: {
       title: "Explore Official Data",
       sub: "Direct visualisation from verified PISA and APBN datasets",
+      tabAN: "National Assessment",
       tabPisa: "PISA Indonesia",
       tabSpending: "Education Spending",
       viewTrend: "Proficiency Trend",
@@ -1542,6 +1690,8 @@ function DataExplorer({ lang, T, onQuery }) {
       viewProf: "Domain Proficiency",
       viewOwnership: "Public vs Private",
       viewScoreTrend: "Score Trend",
+      viewLiteracy: "Literacy",
+      viewNumeracy: "Numeracy",
       domainReading: "Reading",
       domainMath: "Mathematics",
       domainScience: "Science",
@@ -1554,6 +1704,7 @@ function DataExplorer({ lang, T, onQuery }) {
       meanLabel: "National mean score (500-point scale)",
       ownershipLabel: "Mean reading score by school ownership",
       source: "Source: PISA Indonesia 2000–2022, Kemendikdasmen / OECD",
+      sourceAN: "Source: National Assessment 2025, Portal Data Pendidikan, Kementerian Pendidikan Dasar dan Menengah Republik Indonesia",
     },
   }[lang];
 
@@ -1583,7 +1734,11 @@ function DataExplorer({ lang, T, onQuery }) {
         </div>
         {/* Dataset tabs */}
         <div style={{ display: "flex", gap: "0.35rem" }}>
-          {[["pisa", labels.tabPisa, "#0d6efd"], ["spending", labels.tabSpending, "#d97706"]].map(([key, label, color]) => (
+          {[
+            ["pisa", labels.tabPisa, "#0d6efd"],
+            ["spending", labels.tabSpending, "#d97706"],
+            ["an", labels.tabAN, "#079C11"],
+          ].map(([key, label, color]) => (
             <button key={key} onClick={() => setActiveTab(key)} style={{
               background: activeTab === key ? color : T.surface,
               border: `1px solid ${activeTab === key ? color : T.border}`,
@@ -1596,7 +1751,7 @@ function DataExplorer({ lang, T, onQuery }) {
       </div>
 
       <div style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: "12px", overflow: "hidden", boxShadow: T.shadow }}>
-        {activeTab === "pisa" ? (
+        {activeTab === "pisa" && (
           <>
             {/* PISA controls */}
             <div style={{ background: T.surfaceAlt, padding: "0.75rem 1.2rem", borderBottom: `1px solid ${T.border}`, display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
@@ -1658,7 +1813,8 @@ function DataExplorer({ lang, T, onQuery }) {
               </button>
             </div>
           </>
-        ) : (
+        )}
+        {activeTab === "spending" && (
           <>
             <div style={{ background: T.surfaceAlt, padding: "0.75rem 1.2rem", borderBottom: `1px solid ${T.border}`, display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
               <span style={{ fontSize: "0.7rem", fontWeight: "700", color: "#d97706" }}>
@@ -1673,6 +1829,53 @@ function DataExplorer({ lang, T, onQuery }) {
               <span style={{ fontSize: "0.66rem", color: T.textMuted }}>{labels.spendingSource} · {SPENDING_DATA.meta.note}</span>
               <button onClick={() => onQuery(lang === "id" ? "Bagaimana tren belanja pendidikan Indonesia dari 2005 hingga sekarang?" : "What is the trend in Indonesia education spending from 2005 to present?")}
                 style={{ fontSize: "0.68rem", fontWeight: "700", color: "#d97706", background: "rgba(217,119,6,0.12)", border: "1px solid rgba(217,119,6,0.3)", padding: "0.22rem 0.65rem", borderRadius: "5px", cursor: "pointer", fontFamily: "inherit" }}>
+                {lang === "id" ? "Analisis dengan AI →" : "Analyse with AI →"}
+              </button>
+            </div>
+          </>
+        )}
+        {activeTab === "an" && (
+          <>
+            <div style={{ background: T.surfaceAlt, padding: "0.75rem 1.2rem", borderBottom: `1px solid ${T.border}`, display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+              <span style={{ fontSize: "0.7rem", fontWeight: "700", color: "#079C11" }}>
+                {lang === "id" ? "Asesmen Nasional 2025" : "National Assessment 2025"}
+              </span>
+              <div style={{ display: "flex", gap: "0.25rem", flexWrap: "wrap" }}>
+                {[
+                  ["literacy", labels.viewLiteracy],
+                  ["numeracy", labels.viewNumeracy],
+                ].map(([k, l]) => (
+                  <button 
+                    key={k} 
+                    onClick={() => setAnView(k)} 
+                    style={{ 
+                      background: anView === k ? T.blueSub : "none", 
+                      border: `1px solid ${anView === k ? "#079C11" : T.border}`, 
+                      color: anView === k ? "#079C11" : T.textSub, fontSize: "0.7rem", 
+                      fontWeight: "600", 
+                      padding: "0.22rem 0.65rem", 
+                      borderRadius: "5px", 
+                      cursor: "pointer", 
+                      fontFamily: "inherit" 
+                    }}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div style={{ padding: "1rem 1.2rem 0.75rem" }}>
+              {anView === "literacy" && (
+                <ANLiteracyChart lang={lang} />
+              )}
+              {anView === "numeracy" && (
+                <ANNumeracyChart lang={lang} />
+              )}
+            </div>
+            <div style={{ padding: "0.5rem 1.2rem 0.75rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem", borderTop: `1px solid ${T.border}` }}>
+              <span style={{ fontSize: "0.66rem", color: T.textMuted }}>{labels.sourceAN} · <a href={ASESMEN_NASIONAL_DATA.meta.url} style={{ color: "#89CFF0" }}>Ref</a></span>
+              <button onClick={() => onQuery(lang === "id" ? "Bagaimana hasil asesmen nasional per provinsi?" : "How is the national assessment result per province?")}
+                style={{ fontSize: "0.68rem", fontWeight: "700", color: "#079C11", background: "rgba(7, 156, 17,0.12)", border: "1px solid rgba(7, 156, 17,0.3)", padding: "0.22rem 0.65rem", borderRadius: "5px", cursor: "pointer", fontFamily: "inherit" }}>
                 {lang === "id" ? "Analisis dengan AI →" : "Analyse with AI →"}
               </button>
             </div>

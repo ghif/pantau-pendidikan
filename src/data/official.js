@@ -165,3 +165,396 @@ export const TOTAL_SPENDING_DATA = {
     constitutionalMandate20pct: "20% of total APBN Belanja Negara. Total education 2024: Rp 569.1T ÷ Rp 3,325.1T APBN = 17.1%. RAPBN 2026 projection: 20.9% (first time exceeding mandate).",
   },
 };
+
+export const ASESMEN_NASIONAL_DATA = {
+  data: {
+    "year": 2025,
+    "national_avg": { "literacy": 67.94, "numeracy": 62.53 },
+    "provinces": [
+      {
+        "kode_prov": 31,
+        "name": "Prov. D.K.I. Jakarta",
+        "levels": {
+          "SEMUA": { "literacy": 86.18, "numeracy": 78.29 },
+          "SD/sederajat": { "literacy": 83.51, "numeracy": 73.89 },
+          "SMP/sederajat": { "literacy": 91.65, "numeracy": 85.96 },
+          "SMA/SMK/sederajat": { "literacy": 84.25, "numeracy": 76.59 }
+        }
+      },
+      {
+        "kode_prov": 32,
+        "name": "Prov. Jawa Barat",
+        "levels": {
+          "SEMUA": { "literacy": 68.85, "numeracy": 63.72 },
+          "SD/sederajat": { "literacy": 66.87, "numeracy": 61.16 },
+          "SMP/sederajat": { "literacy": 75.21, "numeracy": 69.68 },
+          "SMA/SMK/sederajat": { "literacy": 64.92, "numeracy": 61.61 }
+        }
+      },
+      {
+        "kode_prov": 33,
+        "name": "Prov. Jawa Tengah",
+        "levels": {
+          "SEMUA": { "literacy": 78.19, "numeracy": 71.91 },
+          "SD/sederajat": { "literacy": 75.33, "numeracy": 68.48 },
+          "SMP/sederajat": { "literacy": 85.91, "numeracy": 80.28 },
+          "SMA/SMK/sederajat": { "literacy": 76.26, "numeracy": 70.94 }
+        }
+      },
+      {
+        "kode_prov": 34,
+        "name": "Prov. D.I. Yogyakarta",
+        "levels": {
+          "SEMUA": { "literacy": 87.75, "numeracy": 81.63 },
+          "SD/sederajat": { "literacy": 84.27, "numeracy": 77.74 },
+          "SMP/sederajat": { "literacy": 94.5, "numeracy": 90.02 },
+          "SMA/SMK/sederajat": { "literacy": 87.15, "numeracy": 79.88 }
+        }
+      },
+      {
+        "kode_prov": 35,
+        "name": "Prov. Jawa Timur",
+        "levels": {
+          "SEMUA": { "literacy": 73.12, "numeracy": 67.96 },
+          "SD/sederajat": { "literacy": 71.24, "numeracy": 65.34 },
+          "SMP/sederajat": { "literacy": 79.35, "numeracy": 74.3 },
+          "SMA/SMK/sederajat": { "literacy": 69.3, "numeracy": 65.74 }
+        }
+      },
+      {
+        "kode_prov": 11,
+        "name": "Prov. Aceh",
+        "levels": {
+          "SEMUA": { "literacy": 57.25, "numeracy": 53.18 },
+          "SD/sederajat": { "literacy": 52.86, "numeracy": 47.68 },
+          "SMP/sederajat": { "literacy": 62.38, "numeracy": 57.54 },
+          "SMA/SMK/sederajat": { "literacy": 58.97, "numeracy": 58.2 }
+        }
+      },
+      {
+        "kode_prov": 12,
+        "name": "Prov. Sumatera Utara",
+        "levels": {
+          "SEMUA": { "literacy": 60.53, "numeracy": 56.5 },
+          "SD/sederajat": { "literacy": 59.33, "numeracy": 54.71 },
+          "SMP/sederajat": { "literacy": 66.3, "numeracy": 61.68 },
+          "SMA/SMK/sederajat": { "literacy": 55.2, "numeracy": 53.22 }
+        }
+      },
+      {
+        "kode_prov": 13,
+        "name": "Prov. Sumatera Barat",
+        "levels": {
+          "SEMUA": { "literacy": 69.98, "numeracy": 63.48 },
+          "SD/sederajat": { "literacy": 67.69, "numeracy": 60.38 },
+          "SMP/sederajat": { "literacy": 76.47, "numeracy": 69.33 },
+          "SMA/SMK/sederajat": { "literacy": 66.24, "numeracy": 62.94 }
+        }
+      },
+      {
+        "kode_prov": 14,
+        "name": "Prov. Riau",
+        "levels": {
+          "SEMUA": { "literacy": 68.4, "numeracy": 61.33 },
+          "SD/sederajat": { "literacy": 63.72, "numeracy": 56.05 },
+          "SMP/sederajat": { "literacy": 74.17, "numeracy": 67.6 },
+          "SMA/SMK/sederajat": { "literacy": 69.61, "numeracy": 63.05 }
+        }
+      },
+      {
+        "kode_prov": 15,
+        "name": "Prov. Jambi",
+        "levels": {
+          "SEMUA": { "literacy": 63.03, "numeracy": 57.51 },
+          "SD/sederajat": { "literacy": 60.4, "numeracy": 54.56 },
+          "SMP/sederajat": { "literacy": 69.49, "numeracy": 63.32 },
+          "SMA/SMK/sederajat": { "literacy": 59.19, "numeracy": 55.34 }
+        }
+      },
+      {
+        "kode_prov": 16,
+        "name": "Prov. Sumatera Selatan",
+        "levels": {
+          "SEMUA": { "literacy": 62.08, "numeracy": 57.66 },
+          "SD/sederajat": { "literacy": 58.81, "numeracy": 53.06 },
+          "SMP/sederajat": { "literacy": 69.16, "numeracy": 64.97 },
+          "SMA/SMK/sederajat": { "literacy": 59.65, "numeracy": 58.24 }
+        }
+      },
+      {
+        "kode_prov": 18,
+        "name": "Prov. Lampung",
+        "levels": {
+          "SEMUA": { "literacy": 62.1, "numeracy": 56.1 },
+          "SD/sederajat": { "literacy": 58.66, "numeracy": 51.16 },
+          "SMP/sederajat": { "literacy": 69.06, "numeracy": 63.78 },
+          "SMA/SMK/sederajat": { "literacy": 59.98, "numeracy": 56.4 }
+        }
+      },
+      {
+        "kode_prov": 61,
+        "name": "Prov. Kalimantan Barat",
+        "levels": {
+          "SEMUA": { "literacy": 61.73, "numeracy": 53.85 },
+          "SD/sederajat": { "literacy": 55.35, "numeracy": 46.84 },
+          "SMP/sederajat": { "literacy": 69.48, "numeracy": 61.81 },
+          "SMA/SMK/sederajat": { "literacy": 64.18, "numeracy": 57.54 }
+        }
+      },
+      {
+        "kode_prov": 62,
+        "name": "Prov. Kalimantan Tengah",
+        "levels": {
+          "SEMUA": { "literacy": 66.61, "numeracy": 59.71 },
+          "SD/sederajat": { "literacy": 60.35, "numeracy": 52.95 },
+          "SMP/sederajat": { "literacy": 75.52, "numeracy": 68.44 },
+          "SMA/SMK/sederajat": { "literacy": 66.31, "numeracy": 60.87 }
+        }
+      },
+      {
+        "kode_prov": 63,
+        "name": "Prov. Kalimantan Selatan",
+        "levels": {
+          "SEMUA": { "literacy": 71.47, "numeracy": 64.51 },
+          "SD/sederajat": { "literacy": 66.62, "numeracy": 59.05 },
+          "SMP/sederajat": { "literacy": 78.79, "numeracy": 71.54 },
+          "SMA/SMK/sederajat": { "literacy": 71.01, "numeracy": 65.87 }
+        }
+      },
+      {
+        "kode_prov": 64,
+        "name": "Prov. Kalimantan Timur",
+        "levels": {
+          "SEMUA": { "literacy": 74.74, "numeracy": 65.82 },
+          "SD/sederajat": { "literacy": 67.65, "numeracy": 57.85 },
+          "SMP/sederajat": { "literacy": 83.12, "numeracy": 75.09 },
+          "SMA/SMK/sederajat": { "literacy": 77.39, "numeracy": 69.03 }
+        }
+      },
+      {
+        "kode_prov": 71,
+        "name": "Prov. Sulawesi Utara",
+        "levels": {
+          "SEMUA": { "literacy": 56.25, "numeracy": 49.98 },
+          "SD/sederajat": { "literacy": 50.25, "numeracy": 42.73 },
+          "SMP/sederajat": { "literacy": 66.41, "numeracy": 59.86 },
+          "SMA/SMK/sederajat": { "literacy": 54.57, "numeracy": 51.97 }
+        }
+      },
+      {
+        "kode_prov": 72,
+        "name": "Prov. Sulawesi Tengah",
+        "levels": {
+          "SEMUA": { "literacy": 56.78, "numeracy": 49.41 },
+          "SD/sederajat": { "literacy": 52.32, "numeracy": 43.63 },
+          "SMP/sederajat": { "literacy": 64.92, "numeracy": 57.64 },
+          "SMA/SMK/sederajat": { "literacy": 53.99, "numeracy": 49.72 }
+        }
+      },
+      {
+        "kode_prov": 73,
+        "name": "Prov. Sulawesi Selatan",
+        "levels": {
+          "SEMUA": { "literacy": 60.31, "numeracy": 55.95 },
+          "SD/sederajat": { "literacy": 58.55, "numeracy": 54.1 },
+          "SMP/sederajat": { "literacy": 65.96, "numeracy": 60.02 },
+          "SMA/SMK/sederajat": { "literacy": 55.73, "numeracy": 54.08 }
+        }
+      },
+      {
+        "kode_prov": 74,
+        "name": "Prov. Sulawesi Tenggara",
+        "levels": {
+          "SEMUA": { "literacy": 56.72, "numeracy": 51.67 },
+          "SD/sederajat": { "literacy": 50.96, "numeracy": 45.27 },
+          "SMP/sederajat": { "literacy": 65.75, "numeracy": 59.1 },
+          "SMA/SMK/sederajat": { "literacy": 55.89, "numeracy": 54.27 }
+        }
+      },
+      {
+        "kode_prov": 81,
+        "name": "Prov. Maluku",
+        "levels": {
+          "SEMUA": { "literacy": 48.36, "numeracy": 43.85 },
+          "SD/sederajat": { "literacy": 44.46, "numeracy": 38.07 },
+          "SMP/sederajat": { "literacy": 55.12, "numeracy": 50.96 },
+          "SMA/SMK/sederajat": { "literacy": 45.65, "numeracy": 44.32 }
+        }
+      },
+      {
+        "kode_prov": 51,
+        "name": "Prov. Bali",
+        "levels": {
+          "SEMUA": { "literacy": 77.22, "numeracy": 69.87 },
+          "SD/sederajat": { "literacy": 72.07, "numeracy": 64.93 },
+          "SMP/sederajat": { "literacy": 88.17, "numeracy": 80.49 },
+          "SMA/SMK/sederajat": { "literacy": 82.29, "numeracy": 74.55 }
+        }
+      },
+      {
+        "kode_prov": 52,
+        "name": "Prov. Nusa Tenggara Barat",
+        "levels": {
+          "SEMUA": { "literacy": 52.89, "numeracy": 47.71 },
+          "SD/sederajat": { "literacy": 52.33, "numeracy": 45.44 },
+          "SMP/sederajat": { "literacy": 58.69, "numeracy": 52.55 },
+          "SMA/SMK/sederajat": { "literacy": 45.88, "numeracy": 46.08 }
+        }
+      },
+      {
+        "kode_prov": 53,
+        "name": "Prov. Nusa Tenggara Timur",
+        "levels": {
+          "SEMUA": { "literacy": 52.97, "numeracy": 48.01 },
+          "SD/sederajat": { "literacy": 49.72, "numeracy": 44.71 },
+          "SMP/sederajat": { "literacy": 60.87, "numeracy": 54.74 },
+          "SMA/SMK/sederajat": { "literacy": 47.55, "numeracy": 44.61 }
+        }
+      },
+      {
+        "kode_prov": 91,
+        "name": "Prov. Papua",
+        "levels": {
+          "SEMUA": { "literacy": 47.45, "numeracy": 44.77 },
+          "SD/sederajat": { "literacy": 39.97, "numeracy": 36.21 },
+          "SMP/sederajat": { "literacy": 57.21, "numeracy": 54.3 },
+          "SMA/SMK/sederajat": { "literacy": 47.9, "numeracy": 47.59 }
+        }
+      },
+      {
+        "kode_prov": 17,
+        "name": "Prov. Bengkulu",
+        "levels": {
+          "SEMUA": { "literacy": 63.38, "numeracy": 56.99 },
+          "SD/sederajat": { "literacy": 60.14, "numeracy": 53.41 },
+          "SMP/sederajat": { "literacy": 70.69, "numeracy": 63.69 },
+          "SMA/SMK/sederajat": { "literacy": 59.61, "numeracy": 55.01 }
+        }
+      },
+      {
+        "kode_prov": 82,
+        "name": "Prov. Maluku Utara",
+        "levels": {
+          "SEMUA": { "literacy": 33.58, "numeracy": 30.96 },
+          "SD/sederajat": { "literacy": 28.02, "numeracy": 23.35 },
+          "SMP/sederajat": { "literacy": 41.46, "numeracy": 38.3 },
+          "SMA/SMK/sederajat": { "literacy": 33.32, "numeracy": 34.78 }
+        }
+      },
+      {
+        "kode_prov": 36,
+        "name": "Prov. Banten",
+        "levels": {
+          "SEMUA": { "literacy": 75.82, "numeracy": 65.6 },
+          "SD/sederajat": { "literacy": 71.79, "numeracy": 59.45 },
+          "SMP/sederajat": { "literacy": 83.67, "numeracy": 75.27 },
+          "SMA/SMK/sederajat": { "literacy": 74.35, "numeracy": 67.17 }
+        }
+      },
+      {
+        "kode_prov": 75,
+        "name": "Prov. Gorontalo",
+        "levels": {
+          "SEMUA": { "literacy": 56.98, "numeracy": 49.34 },
+          "SD/sederajat": { "literacy": 50.19, "numeracy": 41.36 },
+          "SMP/sederajat": { "literacy": 68.13, "numeracy": 61.38 },
+          "SMA/SMK/sederajat": { "literacy": 55.79, "numeracy": 49.74 }
+        }
+      },
+      {
+        "kode_prov": 19,
+        "name": "Prov. Kepulauan Bangka Belitung",
+        "levels": {
+          "SEMUA": { "literacy": 60.39, "numeracy": 55.8 },
+          "SD/sederajat": { "literacy": 57.46, "numeracy": 51.19 },
+          "SMP/sederajat": { "literacy": 66.18, "numeracy": 62.22 },
+          "SMA/SMK/sederajat": { "literacy": 58.65, "numeracy": 56.84 }
+        }
+      },
+      {
+        "kode_prov": 21,
+        "name": "Prov. Kepulauan Riau",
+        "levels": {
+          "SEMUA": { "literacy": 78.05, "numeracy": 69.2 },
+          "SD/sederajat": { "literacy": 72.16, "numeracy": 62.23 },
+          "SMP/sederajat": { "literacy": 86.22, "numeracy": 78.77 },
+          "SMA/SMK/sederajat": { "literacy": 78.06, "numeracy": 69.39 }
+        }
+      },
+      {
+        "kode_prov": 76,
+        "name": "Prov. Sulawesi Barat",
+        "levels": {
+          "SEMUA": { "literacy": 49.73, "numeracy": 45.74 },
+          "SD/sederajat": { "literacy": 46.76, "numeracy": 41.74 },
+          "SMP/sederajat": { "literacy": 56.49, "numeracy": 51.09 },
+          "SMA/SMK/sederajat": { "literacy": 45.71, "numeracy": 45.8 }
+        }
+      },
+      {
+        "kode_prov": 92,
+        "name": "Prov. Papua Barat",
+        "levels": {
+          "SEMUA": { "literacy": 42.04, "numeracy": 38.35 },
+          "SD/sederajat": { "literacy": 36.88, "numeracy": 31.86 },
+          "SMP/sederajat": { "literacy": 48.99, "numeracy": 45.98 },
+          "SMA/SMK/sederajat": { "literacy": 43.81, "numeracy": 42.48 }
+        }
+      },
+      {
+        "kode_prov": 65,
+        "name": "Prov. Kalimantan Utara",
+        "levels": {
+          "SEMUA": { "literacy": 66.11, "numeracy": 57.7 },
+          "SD/sederajat": { "literacy": 57.81, "numeracy": 48.69 },
+          "SMP/sederajat": { "literacy": 75.46, "numeracy": 67.62 },
+          "SMA/SMK/sederajat": { "literacy": 68.54, "numeracy": 60.65 }
+        }
+      },
+      {
+        "kode_prov": 93,
+        "name": "Prov. Papua Selatan",
+        "levels": {
+          "SEMUA": { "literacy": 37.68, "numeracy": 35.9 },
+          "SD/sederajat": { "literacy": 32.27, "numeracy": 28.85 },
+          "SMP/sederajat": { "literacy": 47.47, "numeracy": 45.29 },
+          "SMA/SMK/sederajat": { "literacy": 33.42, "numeracy": 36.22 }
+        }
+      },
+      {
+        "kode_prov": 94,
+        "name": "Prov. Papua Tengah",
+        "levels": {
+          "SEMUA": { "literacy": 43.79, "numeracy": 41.8 },
+          "SD/sederajat": { "literacy": 43.36, "numeracy": 37.91 },
+          "SMP/sederajat": { "literacy": 50.47, "numeracy": 47.28 },
+          "SMA/SMK/sederajat": { "literacy": 36.16, "numeracy": 40.9 }
+        }
+      },
+      {
+        "kode_prov": 96,
+        "name": "Prov. Papua Barat Daya",
+        "levels": {
+          "SEMUA": { "literacy": 47.99, "numeracy": 43.97 },
+          "SD/sederajat": { "literacy": 41.63, "numeracy": 36.71 },
+          "SMP/sederajat": { "literacy": 56.95, "numeracy": 52.03 },
+          "SMA/SMK/sederajat": { "literacy": 46.74, "numeracy": 46.17 }
+        }
+      },
+      {
+        "kode_prov": 95,
+        "name": "Prov. Papua Pegunungan",
+        "levels": {
+          "SEMUA": { "literacy": 27.16, "numeracy": 31.43 },
+          "SD/sederajat": { "literacy": 37.29, "numeracy": 35.59 },
+          "SMP/sederajat": { "literacy": 29.95, "numeracy": 31.12 },
+          "SMA/SMK/sederajat": { "literacy": 15.12, "numeracy": 28.45 }
+        }
+      }
+    ]
+  },
+  meta: {
+    source: "Asesmen Nasional Tahun 2025",
+    url: "https://data.kemendikdasmen.go.id/dataset/p/prioritas-data/persentase-peserta-didik-satuan-pendidikan-formal-dan-nonformal-yang-mencapai-standar-kompetensi-minimum-dalam-asesmen-kompetensi-tingkat-nasional-a-literasi-membaca-dan-b-numerasi-2025-indonesia",
+  },
+};
