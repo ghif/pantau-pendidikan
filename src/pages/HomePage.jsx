@@ -1501,7 +1501,7 @@ const stylesAN = {
   chartArea: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '12px'
+    gap: '2px'
   },
   row: {
     display: 'flex',
@@ -1520,7 +1520,7 @@ const stylesAN = {
   },
   barContainer: {
     flex: 1,
-    height: '28px',
+    height: '12px',
     backgroundColor: '#f0f4f8', // Light gray background track
     borderRadius: '4px',
     position: 'relative',
