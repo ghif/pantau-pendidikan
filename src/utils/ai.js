@@ -152,7 +152,7 @@ ATURAN GRAFIK:
         generationConfig: {
           response_mime_type: "application/json"
         },
-        tools: [{ googleSearch: {} }]
+        // tools: [{ googleSearch: {} }]
       }),
     });
 
